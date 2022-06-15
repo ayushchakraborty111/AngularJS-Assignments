@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<!--ng-style ng-class ng-disabled ng-if ng-hide ng-show-->
+<body>
+    <div ng-app="myApp" ng-controller="myCtrl">
+        <h1>Todo List</h1>
+        <input type="text" ng-model="inp" placeholder="addTodo"
+        ng-keyup="$event.keyCode == 13 && addTodoFunc()">
+        <button ng-click="addTodoFunc()">Add Todo</button>
+        <ul>
+            <li ng-repeat="todo in todos track by $index">
+                <input type="checkbox" ng-model="todo.completed">
+                <span ng-class="{complete:todo.completed == true}">{{todo.item}}</span>
+                <!-- <input type="text" ng-show="show" ng-model="itemByIndex" > -->
+                <i class="fa-solid fa-trash" ng-click="deleteItem($index)"></i>
+                <i class="fa-solid fa-pen-to-square" ng-click="editItem($index)"></i>
+            </li>
+        </ul>
+        <br>
+        <div>
+            <h2>Results</h2>
+            <p>Done Tasks: {{countTask()}}</p>
+            <p>Remaining Tasks: {{rem - countTask()}}</p>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
