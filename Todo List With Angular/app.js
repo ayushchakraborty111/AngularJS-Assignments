@@ -5,6 +5,11 @@ app.controller('myCtrl', function($scope){
     $scope.todos = [];
     $scope.rem = 0;
     $scope.editIndex = false;
+    $scope.paraStyle = {
+        "background-color":"yellow",
+        "font-weight": "bold",
+        "font-size": "25px"
+    }
     $scope.addTodoFunc = function()
     {
         if($scope.inp.length != 0)
@@ -55,7 +60,15 @@ app.controller('myCtrl', function($scope){
     {
         $scope.inp = $scope.todos[index].item;
         $scope.editIndex = index;
-        //$scope.show = true;
+        $scope.show = true;
         //function appendAtIndex()
     }
+    $scope.orderAsc = function(x)
+    {
+        $scope.sortAsc = x;
+    }
+    // $scope.orderDesc = function(x)
+    // {
+    //     $scope.sortDesc = x;
+    // }
 })

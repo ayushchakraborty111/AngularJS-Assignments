@@ -13,15 +13,18 @@
 <!--ng-style ng-class ng-disabled ng-if ng-hide ng-show-->
 <body>
     <div ng-app="myApp" ng-controller="myCtrl">
-        <h1>Todo List</h1>
+        <h1 ng-mouseover="myStyle={color: 'red'}" ng-mouseleave="myStyle={color: 'black'}" ng-style="myStyle">Todo List</h1>
         <input type="text" ng-model="inp" placeholder="addTodo"
         ng-keyup="$event.keyCode == 13 && addTodoFunc()">
         <button ng-click="addTodoFunc()">Add Todo</button>
+        <!--filters-->
+        <i class="fa-solid fa-sort-down" ng-click="orderAsc('item')"></i>
+        <!-- <i class="fa-solid fa-sort-up" ng-click="orderDesc('item')"></i> -->
         <ul>
-            <li ng-repeat="todo in todos track by $index">
+            <li ng-repeat="todo in todos | orderBy: sortAsc">
                 <input type="checkbox" ng-model="todo.completed">
-                <span ng-class="{complete:todo.completed == true}">{{todo.item}}</span>
-                <!-- <input type="text" ng-show="show" ng-model="itemByIndex" > -->
+                <span ng-class="{complete:todo.completed == true}" ng-show="!show">{{todo.item}}</span>
+                <input type="text" ng-show="show" ng-keyup="onKeyUp($event)" ng-bind="todo.item">
                 <i class="fa-solid fa-trash" ng-click="deleteItem($index)"></i>
                 <i class="fa-solid fa-pen-to-square" ng-click="editItem($index)"></i>
             </li>
@@ -31,6 +34,9 @@
             <h2>Results</h2>
             <p>Done Tasks: {{countTask()}}</p>
             <p>Remaining Tasks: {{rem - countTask()}}</p>
+            <div ng-show="rem-countTask() == 0 && todos.length>0">
+                <p ng-style="paraStyle">All Tasks Completed</p>
+            </div>
         </div>
     </div>
     <script src="app.js"></script>

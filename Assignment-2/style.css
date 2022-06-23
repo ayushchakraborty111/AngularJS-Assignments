@@ -1,0 +1,159 @@
+body{
+    background-image: url('/images1/background.png');
+}
+
+#btnspan
+{
+    padding: 0px 10px ;
+}
+
+#btndiv{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#btnform{
+    display: flex;
+    padding-left: 80px;
+    padding-top: 20px;
+}
+
+#info
+{
+    /* text-align: center; */
+    padding-top: 4.7vh;
+}
+
+button
+{
+    width: 100px;
+    height: 40px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 49px;
+    box-shadow: 0px 9px 15px rgba(20, 14, 14, 0.1);
+    border: none;
+    transition: all 0.3s ease 0s;
+}
+
+#servicediv
+{
+text-align: center;
+}
+
+.card
+{
+    transition: all 0.3s ease 0s;
+    border: 1px solid black;    
+}
+.card:hover
+{
+    transform: translateY(-9px);
+    
+}
+
+.card-text
+{
+    color: grey;
+}
+
+.btn-primary
+{
+    border-radius:30px;
+}
+
+#next
+{
+    padding:20px 20px ;
+    text-align: center;
+}
+
+#foot
+{
+    background-color: rgb(46, 76, 121);
+    height: 60px;
+}
+
+#f1
+{
+    color: rgb(17, 96, 206);
+    font-family: Arial, Helvetica, sans-serif;
+}
+#f2
+{
+    color: white;
+    float: right;
+    padding: 10px 0px;
+}
+
+.col-md-4{
+    padding: 10px;
+}
+
+#carddeck{
+    height: 340px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
+#contactdiv{
+    box-shadow: 1px 1px 2px 2px darkgray;
+}
+
+#contactForm
+{
+    text-align: center;
+}
+
+
+#submitBtn
+{
+    border-radius: 79px;
+    background-color: blue;
+    color:white;
+}
+
+
+#submitBtn2
+{
+    border-radius: 89px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#formProject
+{
+  background-color: aqua;
+  width: 40%;
+  box-sizing: border-box; 
+}
+
+#frmdiv
+{
+    text-align: center;
+    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    width: 70%;
+}
+
+.img2{
+    width: 260px;
+}
+
+@media screen and (max-width: 720px){
+    body{
+        width: 100%;
+        zoom: 0.8;
+        overflow-y: scroll;
+    }
+    #btnform{
+        padding-left: 0px;
+    }
+    #image1{
+        padding-left: 25px;
+    }
+    #btnform{
+        flex-wrap: wrap;
+    }
+}

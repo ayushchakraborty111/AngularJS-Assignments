@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+        integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.js"></script>
+        <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <script src="script.js"></script>
+        <!-- <script src="modal.js"></script> -->
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="mainStyle.css">
+    <title>Assignment2</title>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div class="container" id="btndiv">
+        <nav class="navbar navbar-light ">
+            <a class="navbar-brand" href="#">
+                <img src="/images1/pb.webp" id="image1" alt="" width="50" height="54">
+            </a>
+            <form class="" id="btnform">
+                <span id="btnspan"> <button class="button" type="submit" ng-click="home()" id="hm">Home</button></span>
+                <span id="btnspan"> <button class="button" type="submit" ng-click="project()">Projects</button></span>
+                <span id="btnspan"> <button class="button" type="submit" ng-click="service()">Service</button></span>
+                <span id="btnspan"> <button class="button" type="submit" ng-click="contact()">Contacts</button></span>
+            </form>
+        </nav>
+    </div>
+    <!-- main page -->
+    <div class="container" id="divMain" ng-if="showMain">
+        <div class="container" id="servicediv">
+            <h3>The Industry's Only Digital Patient Engazement Platform Powered By Healthcare Consumer Physcographics
+            </h3>
+            <p class="text-secondary">Powered By Extensive Healthcare Consumer Insights and Data</p>
+            <button class="button" id="book" type="submit">Book an Appointment</button>
+        </div>
+        <div class="container" id="centerImg">
+            <img src="https://previews.123rf.com/images/natalimis/natalimis1802/natalimis180200084/95815946-doctor-shows-in-the-mobile-phone-app-with-a-hologram-of-the-person-and-the-internal-organs-.jpg" height="200" width="500">
+        </div>
+        <div class="container d-flex" id="img3">
+            <span id="btnspan"><img src="/images1/pb.webp" height="100" width="100"></span>
+            <span id="btnspan"><img src="data:image/png;base64,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" height="100" width="100"></span>
+            <span id="btnspan"><img src="data:image/png;base64,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" height="100" width="100"></span>
+        </div>
+
+        <div class="container" id="next">
+
+            <button class="button" type="submit" ng-click="nexthome1()">Next <i class="fa-solid fa-forward"></i></button>
+            <p></p>
+        </div>
+    </div>
+
+
+    <!-- projects -->
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-body">
+            <p>Do you want to submit</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+    <div class="container" id="changeProject" ng-if="showProject">
+        
+        <div class="container" id="frmdiv">
+                <form name="myForm" id="formProject">
+                    <div id="d1" class="mt-3">
+                        <label for="fullname" class="form-label">
+                            <h6>Full Name*</h6>
+                        </label>
+                        <input type="text" name="fullName" class="form-control" ng-model="fullName" required>
+                        <span ng-show="myForm.fullName.$touched && myForm.fullName.$pristine" class="text-muted">The
+                            name is required.</span>
+                    </div>
+
+                    <div id="d1" class="mt-3">
+                        <label for="email" class="form-label">
+                            <h6>Email Address*</h6>
+                        </label>
+                        <input type="email" name="email" class="form-control" ng-model="email" required>
+                        <span ng-show="myForm.email.$touched && myForm.email.$invalid" class="text-muted">The email
+                            address is not valid.</span>
+
+                    </div>
+                    <div id="d1" class="mb-3">
+                        <label for="reason" class="form-label">
+                            <h6>Reason of Health Checkup*</h6>
+                        </label>
+                        <input type="text" name="reason" class="form-control" ng-model="reason" required>
+                        <span ng-show="myForm.reason.$touched && myForm.reason.$invalid" class="text-muted">Please tell
+                            the reason</span>
+                    </div>
+
+                    <div id="d1" class="mb-3">
+                        <label for="location" class="form-label">
+                            <h6>Location</h6>
+                        </label>
+                        <input type="text" name="location" class="form-control" ng-model="location" required>
+                        <span ng-show="myForm.location.$touched && myForm.location.$invalid" class="text-muted">Please
+                            enter the location.</span>
+                    </div>
+
+                    <div id="d1" class="mb-">
+                        <label for="doa" class="form-label">
+                            <h6>Date of Appointment*</h6>
+                        </label>
+                        <input type="date" name="datee" class="form-control" ng-model="datee" required>
+                        <span ng-show="myForm.datee.$touched && myForm.datee.$invalid" class="text-muted">Please enter
+                            the date of Appointment.</span>
+                    </div>
+
+                    <div id="d1" class="mb-3">
+                        <label for="additionalComment" class="form-label">
+                            <h6>Additional Comments (Optional)</h6>
+                        </label>
+                        <textarea class="form-control" rows="3"></textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-1 mb-2">
+                        <button type="button" class="btn btn-primary" id="btn1" ng-click="open()">
+                            Submit
+                          </button>
+                          <br>
+                        <!-- <span ng-show="myForm.submitted.$submitted">The form has been submitted.</span> -->
+                        <!-- <pre></pre> -->
+                    </div>
+                    <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" ng-show="myModal">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              ...
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div> -->
+                </form>
+        </div>
+
+        <div class="container" id="next">
+            <span id="btnspan"><button class="button" type="submit" ng-click="previoushome1()">Prev <i
+                        class="fa-solid fa-backward"></i></button></span>
+            <button class="button" type="submit" ng-click="nexthome2()">Next <i class="fa-solid fa-forward"></i></button>
+            <p></p>
+        </div>
+    </div>
+
+    <!-- services -->
+    <script type="text/ng-template" id="myModalCardContent.html">
+        <div class="card-body">
+            <h4 class="card-title text-center">{{card.heading}}</h4>
+            <img src="{{card.image}}"  alt="..." style="width: 270px; padding-left: 100px">
+            <p class="text-center">{{card.para1}}</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="ok()">OK</button>
+        </div>
+    </script>
+
+    <div class="container" id="changeService" ng-if="showService">
+        <h1 class="text-center">Services We Offer</h1>
+        <br>
+        <div class="row" id="carddeck">
+            <div class="col-md-4" ng-repeat="card in cards track by $index">
+                <div class="panel panel-default">
+                    <div style="display: flex; justify-content: center;">
+                        <img src="{{card.image}}" alt="" class="panel-img-top img2">
+                    </div>
+                    <div class="panel-body text-center">
+                        <h5 class="panel-title">{{card.heading}}</h5>
+                        <p class="panel-text text-muted">{{card.para}}</p>
+                        <a class="btn btn-primary" ng-click="openCardModal(card)">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="next">
+
+            <span id="btnspan"> <button class="button" type="submit" ng-click="previoushome2()">Prev <i
+                        class="fa-solid fa-backward"></i></button></span>
+            <span id="btnspan"><button class="button" type="submit" ng-click="nexthome3()">Next <i
+                        class="fa-solid fa-forward"></i></button></span>
+
+            <p></p>
+        </div>
+
+    </div>
+
+    <!-- contact -->
+    <div class="container" id="changeContact" ng-if="showContact">
+
+        <div class="container row" id="info">
+            <div class="col-md-7 " style="padding: 7vh 19vh;">
+                <div class="mt-5">
+                    <p class="mx-5"> <i class="fa-solid fa-envelope "></i></p>
+                    <h5 class="mx-">Email Us On:</h6>
+                    <p class="text-muted">info@patientbond.com</p>
+                </div>
+                <div class="mt-5">
+                    <p class="mx-5"> <i class="fa-solid fa-phone"></i></p>
+                    <h5 class="mx-">Call Us On:</h5>
+                    <p class="text-muted">+91-8578647868</p>
+                </div>
+            </div>
+
+            <div class="col-md-5" id="contactdiv">
+                <form id="contactForm" name="myForm">
+
+                    <h6 class="text-center mt-3 mb-3 ">Please Fill the Form Below or Call Us.</h6>
+                    <div class="mt-2">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" class="form-control" name="fullname" placeholder="Enter Name" ng-model="fullname" required>
+                    </div>
+                    <span ng-show="myForm.fullname.$touched && myForm.fullname.$invalid" class="text-danger">Please enter
+                        full name</span>
+                    <div class="mt-2">
+                        <label for="email">Email address</label>
+                        <input type="email" class="form-control" name="email" placeholder="Enter email" ng-model="email" required>
+                    </div>
+                    <span ng-show="myForm.email.$touched && myForm.email.$invalid" class="text-danger">Please enter
+                        correct email address</span>
+                    <p class="text-muted text-center ">We'll never share your email address with anyone else</p>
+                    <div class="mt-2">
+                        <label for="city">City</label>
+                        <input type="text" class="form-control" name="city" placeholder="Enter Location" ng-model="city" required>
+                    </div>
+                    <span ng-show="myForm.city.$touched && myForm.city.$invalid" class="text-danger">Please enter
+                        City name</span>
+                    <div class="mt-2">
+                        <label for="phno">Phone Number</label>
+                        <input type="text" class="form-control" name="phno" placeholder="Enter location" ng-model="phno" required>
+                    </div>
+                    <span ng-show="myForm.phno.$touched && myForm.phno.$invalid" class="text-danger">Please enter
+                        phone number</span>
+                    <p class="mt-2"> <input type="checkbox" name="check"><span> Also Receive Updates on Email</span></p>
+                    <div class="d-flex justify-content-center mt-3 mb-3">
+
+                        <button class="button" id="submitBtn">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        <div class="container mt-2" id="next">
+
+            <button class="button" type="submit" ng-click="previoushome3()">Prev <i
+                    class="fa-solid fa-backward"></i></button>
+            <p></p>
+        </div>
+
+    </div>
+    <footer id="" class="d-flex  ">
+        <div class="container-fluid " id="foot">
+            <p></p>
+            <img src="/images1/pb.webp" height="30">
+            <small id="f1">Copyright &copy; PatientBond Pvt. Ltd.</small>
+            <p></p>
+        </div>
+
+    </footer>
+<br>
+</body>
+</html>

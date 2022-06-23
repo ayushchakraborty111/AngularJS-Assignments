@@ -1,0 +1,92 @@
+body
+{
+    background-image: url('/images/background.png');
+}
+
+#btnspan
+{
+    padding: 0px 19px ;
+}
+
+#img3
+{
+    padding: 3em;
+text-align: center;
+justify-content: center;
+
+}
+
+#divMain{
+    margin: 20px auto;
+}
+
+#next
+{
+    text-align: center;
+}
+button
+{
+    width: 100px;
+    height: 40px;
+    background-color: rgb(221, 221, 221);
+    border-radius: 49px;
+    box-shadow: 0px 9px 15px rgba(20, 14, 14, 0.1);
+    border: none;
+    transition: all 0.3s ease 0s;
+}
+
+#book
+{ width: 220px;
+    height: 40px;
+    background-color: blue;
+    color: white;
+}
+
+#centerImg
+{
+    text-align: center;
+
+}
+
+
+#servicediv
+{
+text-align: center;
+padding:4em
+}
+
+
+#foot
+{
+    background-color: rgb(46, 76, 121);
+}
+
+#f1
+{
+    color: rgb(17, 96, 206);
+    font-family: Arial, Helvetica, sans-serif;
+}
+#f2
+{
+    color: white;
+    float: right;
+    padding: 10px 0px;
+}
+
+@media screen and (max-width: 720px){
+    body{
+        width: 100%;
+        zoom: 0.8;
+        overflow-y: scroll;
+    }
+    #btnform{
+        padding-left: 0px;
+    }
+    #image1{
+        padding-left: 25px;
+    }
+    #btnform{
+        flex-wrap: wrap;
+    }
+}
+
