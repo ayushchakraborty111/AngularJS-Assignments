@@ -1,11 +1,12 @@
 body
 {
-    background-image: url('/images/background.png');
+    background-image: url('/images1/background.png');
 }
 
-#btnspan
-{
-    padding: 0px 19px ;
+nav{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px;
 }
 
 #img3
@@ -81,12 +82,6 @@ padding:4em
     }
     #btnform{
         padding-left: 0px;
-    }
-    #image1{
-        padding-left: 25px;
-    }
-    #btnform{
-        flex-wrap: wrap;
     }
 }
 

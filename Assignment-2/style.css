@@ -2,20 +2,20 @@ body{
     background-image: url('/images1/background.png');
 }
 
-#btnspan
-{
-    padding: 0px 10px ;
-}
-
-#btndiv{
+nav{
     display: flex;
     justify-content: space-evenly;
+    padding: 10px;
 }
 
-#btnform{
-    display: flex;
-    padding-left: 80px;
-    padding-top: 20px;
+#buttonsStyle{
+    padding: 10px;
+}
+
+#buttonDiv
+{
+    padding:10px 20px ;
+    margin-left: 110px;
 }
 
 #info
@@ -45,10 +45,9 @@ text-align: center;
     transition: all 0.3s ease 0s;
     border: 1px solid black;    
 }
-.card:hover
+.panel:hover
 {
-    transform: translateY(-9px);
-    
+    transform: scale(1.05);
 }
 
 .card-text

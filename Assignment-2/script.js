@@ -1,90 +1,5 @@
 var app = angular.module("myApp",['ui.bootstrap']);
 app.controller('myCtrl', function ($scope, $modal, $log) {
-    $scope.showService = false;
-    $scope.showProject = false;
-    $scope.showContact=false;
-    $scope.showMain = true;
-    $scope.home = function () {
-        $scope.showMain = true;
-        $scope.showService = false
-        $scope.showProject = false;
-        $scope.showContact=false;
-    }
-    $scope.service = function () {
-        $scope.showService = true;
-        $scope.showMain = false;
-        $scope.showProject = false;
-        $scope.showContact=false;
-    }
-
-    
-    $scope.project = function () {
-        $scope.showProject = true;
-        $scope.showMain = false;
-        $scope.showService=false;
-        $scope.showContact=false;
-    }
-
-    $scope.contact = function () {
-        $scope.showContact=true;
-        $scope.showProject = false;
-        $scope.showMain = false;
-        $scope.showService=false;
-     
-    }
-
-
-$scope.nexthome1=function()
-{
-    $scope.showProject = true;
-    $scope.showMain = false;
-    $scope.showService=false;
-    $scope.showContact=false;
-}
-
-$scope.nexthome2=function()
-{
-    $scope.showProject = false;
-    $scope.showMain = false;
-    $scope.showService=true;
-    $scope.showContact=false;
-
-}
-
-
-$scope.nexthome3=function()
-{
-    $scope.showProject = false;
-    $scope.showMain = false;
-    $scope.showService=false;
-    $scope.showContact=true;
-}
-
-
-
-$scope.previoushome1=function()
-{
-    $scope.showService = false;
-    $scope.showProject = false;
-    $scope.showContact=false;
-    $scope.showMain = true;
-}
-
-$scope.previoushome2=function()
-{
-    $scope.showService = false;
-    $scope.showProject = true;
-    $scope.showContact=false;
-    $scope.showMain = false;
-}
-$scope.previoushome3=function()
-{
-    $scope.showService = true;
-    $scope.showProject = false;
-    $scope.showContact=false;
-    $scope.showMain = false;
-}
-
 $scope.cards = [
 {
     image: 'https://digitalnomadgirls.com/wp-content/uploads/2018/10/girl-on-laptop-website-digital-nomad-girls.jpg',
@@ -105,29 +20,120 @@ $scope.cards = [
     para1: "As value-based care continues to gain momentum, the need for patient activation is more apparent. Through the care model, providers are rewarded for the quality of care they provide and they need patients to be an active part in their care plan so that the quality improves and thus, health outcomes"
 }
 ];
-// var vm = this;
-// $scope.open = function()
-// {
-//     console.log('button clicked');
-//     ModalEditor.open();
-// }
+
+//button array
+$scope.buttonArr = [
+    {
+        displayName: 'PrevBtn',
+        name: 'PREVBTN',
+        visibility: false
+    },
+    {
+        displayName: 'NextBtn',
+        name: 'NEXTBTN',
+        visibility: true
+    }
+]
+
+$scope.tabs = [
+    {
+        displayName: 'Home',
+        name: 'HOME',
+        index: 1,
+        visibility: true
+    },
+    {
+        displayName: 'Project',
+        name: 'PROJECT',
+        index: 2,
+        visibility: false
+    },
+    {
+        displayName: 'Services',
+        name: 'SERVICES',
+        index: 3,
+        visibility: false
+    },
+    {
+        displayName: 'Contact',
+        name: 'CONTACT',
+        index: 4,
+        visibility: false
+    }
+]
+
+$scope.toCheckBtn = function()
+{
+    $scope.index;
+    for(let i=0;i<$scope.tabs.length;i++)
+    {
+        if($scope.tabs[i].visibility == true)
+        {
+            $scope.index = i;
+        }
+    }
+    if($scope.index != 0 && $scope.index != $scope.tabs.length-1)
+    {
+        $scope.buttonArr[0].visibility = true;
+        $scope.buttonArr[1].visibility = true;
+    }
+    else if($scope.index == 0)
+    {
+        $scope.buttonArr[0].visibility = false;
+        $scope.buttonArr[1].visibility = true;
+    }
+    else if($scope.index == $scope.tabs.length-1)
+    {
+        $scope.buttonArr[0].visibility = true;
+        $scope.buttonArr[1].visibility = false;
+    }
+}
+
+$scope.clickedBtn = function(tab)
+{
+    for(let i=0;i<$scope.tabs.length;i++)
+    {
+        $scope.tabs[i].visibility = false;
+    }
+    $scope.tabs[tab.index-1].visibility = true;
+    $scope.toCheckBtn();
+}
+
+//Page change when button clicked
+$scope.pagedButtons = function(btn)
+{
+    $scope.index;
+    for(let i=0;i<$scope.tabs.length;i++)
+    {
+        if($scope.tabs[i].visibility == true)
+        {
+            $scope.index = i;
+        }
+    }
+    if(btn.displayName == 'NextBtn')
+    {
+        $scope.index++;
+        $scope.tabs[$scope.index].visibility = true;
+        $scope.tabs[$scope.index-1].visibility = false;
+    }
+    else if(btn.displayName == 'PrevBtn')
+    {
+        if($scope.index>0)
+        {
+            $scope.index--;
+            $scope.tabs[$scope.index].visibility = true;
+            $scope.tabs[$scope.index+1].visibility = false;
+        }
+    }
+    $scope.toCheckBtn();
+}
 
 //Project Page modal
 $scope.open = function()
 {
     var modal = $modal.open({
         templateUrl: 'myModalContent.html',
-        controller: function($scope, $modalInstance)
-        {
-            $scope.ok = function()
-            {
-                $modalInstance.close();
-            };
-            $scope.cancel = function()
-            {
-                $modalInstance.dismiss('cancel');
-            };
-        }
+        controller: 'modalImplementation'
     })
     
     modal.result.then(function(){
@@ -136,16 +142,15 @@ $scope.open = function()
 }
 
 //services page modal
-$scope.openCardModal = function(card)
+$scope.openCardModal = function(cardSelected)
 {
-    console.log(card);
     var modalInstance = $modal.open({
         templateUrl: 'myModalCardContent.html',
-        controller: cardInstanceModalCtrl,
+        controller: 'modalCard',
         resolve: {
-            card: function()
+            cardSelected: function()
             {
-                return card;
+                return cardSelected;
             }
         }
     });
@@ -155,14 +160,4 @@ $scope.openCardModal = function(card)
         $log.info('Modal dismissed at: ' + new Date());
     })
 }
-
 })
-
-var cardInstanceModalCtrl = function($scope, $modalInstance, card)
-{
-    $scope.card = card;
-    $scope.ok = function()
-    {
-        $modalInstance.close($scope.card);
-    }
-}
