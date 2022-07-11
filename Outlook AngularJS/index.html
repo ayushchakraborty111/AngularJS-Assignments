@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body ng-controller="myCtrl">
+    <h1 id="email">Emails</h1>
+    <button ng-click="addFolder()">Add New Folder</button>&nbsp;&nbsp;
+    <button><i class="fa fa-pencil-square-o" aria-hidden="true" ng-click="newMessage()">New Message</i></button>
+    <hr>
+    <div ng-repeat="file in folder track by $index">
+        <a ui-sref="mail.folder.preview({folder: file.name})" ui-sref-active="activeTab" ng-click="messages($index)">
+            {{file.name}}
+        </a><br><br>
+    </div>
+    <ui-view></ui-view>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.3/angular-ui-router.js" integrity="sha512-Uc14dgIloA0NXRNlh/tP2jiAsm4SD0IOOFBaBAleJqeKiMJNZg3l8ho714lfsCWc9oTQ5mvRpMg9tLcmOf40DQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Faker/3.1.0/faker.min.js" referrerpolicy="no-referrer"></script>
+    <script src="src/app.js"></script>
+    <script src="src/main_controller.js"></script>
+    <script src="src/routes.js"></script>
+    <script src="src/factory.js"></script>
+    <script src="src/tabController.js"></script>
+    <script src="src/folderController.js"></script>
+    <script src="src/individualTabController.js"></script>
+    <script src="src/deleteMessageModalController.js"></script>
+    <script src="src/newMessageModalController.js"></script>
+    <script src="src/timeController.js"></script>
+    <script src="src/loadCtrl.js"></script>
+</body>
+</html>

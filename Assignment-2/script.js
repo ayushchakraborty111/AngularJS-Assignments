@@ -1,5 +1,14 @@
 var app = angular.module("myApp",['ui.bootstrap']);
-app.controller('myCtrl', function ($scope, $modal, $log) {
+
+app.constant("moment", moment);
+
+app.controller('myCtrl', function ($scope, $modal, $log, moment, $interval) {
+
+setInterval(function(){
+    $scope.date = new moment().format("MMMM Do YYYY, h:mm:ss a");
+    $scope.$apply(); 
+},1000);
+   
 $scope.cards = [
 {
     image: 'https://digitalnomadgirls.com/wp-content/uploads/2018/10/girl-on-laptop-website-digital-nomad-girls.jpg',
@@ -39,32 +48,32 @@ $scope.tabs = [
     {
         displayName: 'Home',
         name: 'HOME',
-        index: 1,
+        index: 0,
         visibility: true
     },
     {
         displayName: 'Project',
         name: 'PROJECT',
-        index: 2,
+        index: 1,
         visibility: false
     },
     {
         displayName: 'Services',
         name: 'SERVICES',
-        index: 3,
+        index: 2,
         visibility: false
     },
     {
         displayName: 'Contact',
         name: 'CONTACT',
-        index: 4,
+        index: 3,
         visibility: false
     }
 ]
 
 $scope.toCheckBtn = function()
 {
-    $scope.index;
+    $scope.index = 0;
     for(let i=0;i<$scope.tabs.length;i++)
     {
         if($scope.tabs[i].visibility == true)
@@ -95,14 +104,14 @@ $scope.clickedBtn = function(tab)
     {
         $scope.tabs[i].visibility = false;
     }
-    $scope.tabs[tab.index-1].visibility = true;
+    $scope.tabs[tab.index].visibility = true;
     $scope.toCheckBtn();
 }
 
 //Page change when button clicked
 $scope.pagedButtons = function(btn)
 {
-    $scope.index;
+    $scope.index = 0;
     for(let i=0;i<$scope.tabs.length;i++)
     {
         if($scope.tabs[i].visibility == true)
